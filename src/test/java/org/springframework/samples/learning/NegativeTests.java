@@ -16,6 +16,7 @@
 package org.springframework.samples.learning;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -67,11 +68,12 @@ class NegativeTests {
 	    });
 	  }
 	   
-//	  @Test
-//	  void testExpectedExceptionFail() {
-//	 
-//	    Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//	      Integer.parseInt("1");
-//	    });
-//	  }
+	  @Test
+	  @Disabled("thrown exception is only one type of the expected one")
+	  void testExpectedExceptionFail() {
+	 
+	    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+	      Integer.parseInt("1");
+	    });
+	  }
 }
