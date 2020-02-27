@@ -69,11 +69,12 @@ class NegativeTests {
 	  }
 	   
 	  @Test
-	  @Disabled("thrown exception is only one type of the expected one")
-	  void testExpectedExceptionFail() {
+	  @Disabled("expected an exception but none is thrown")
+	  void testExpectedSuperExceptionFail() {
 	 
 	    Assertions.assertThrows(IllegalArgumentException.class, () -> {
 	      Integer.parseInt("1");
 	    });
-	  }
+	  } 
+
 }
