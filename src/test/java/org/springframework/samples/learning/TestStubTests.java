@@ -30,6 +30,7 @@ public class TestStubTests {
         return list;
     }
 
+    //This is a responder example
     @Test
     public void testGetHighestPricedTrade() throws Exception {
         Price price1 = new Price(10);
@@ -45,6 +46,7 @@ public class TestStubTests {
         assertEquals(10+15+25, totalPrice.getAmount());
     }
 
+    //This is a saboteur example
     @Test
     public void testInvalidTrade() throws Exception {
 
