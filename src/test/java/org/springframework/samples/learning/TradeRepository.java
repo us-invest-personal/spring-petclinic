@@ -6,4 +6,6 @@ public interface TradeRepository {
 
 	Trade getTradeById(long anyLong);
 
+	Long createTrade(Trade trade);
+
 }

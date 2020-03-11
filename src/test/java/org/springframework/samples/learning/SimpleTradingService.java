@@ -28,4 +28,9 @@ public class SimpleTradingService implements TradingService {
     public Trade getTradeById(Long id) {
         return repository.getTradeById(id);
     }
+
+    @Override
+    public Long createTrade(Trade trade) {
+        return repository.createTrade(trade);
+    }
 }
