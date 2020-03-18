@@ -33,9 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		excludeAutoConfiguration= SecurityConfiguration.class)
 class VetControllerTests {
 
-	@Autowired
-	private VetController vetController;
-
+	
 	@MockBean
 	private VetService clinicService;
 
