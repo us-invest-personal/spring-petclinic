@@ -152,9 +152,7 @@ class OwnerControllerTests {
 				.andExpect(model().attribute("owner", hasProperty("telephone", is("6085551023"))))
 				.andExpect(view().name("owners/createOrUpdateOwnerForm"));
 
-		ArgumentCaptor<Integer> idCaptor = ArgumentCaptor.forClass(Integer.class);
-		verify(clinicService).findOwnerById(idCaptor.capture());
-		assertThat(idCaptor.getValue()).isEqualTo(TEST_OWNER_ID);
+		verify(clinicService).findOwnerById(TEST_OWNER_ID);
 	}
 
         @WithMockUser(value = "spring")
