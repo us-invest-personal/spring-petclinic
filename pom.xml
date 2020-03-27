@@ -30,7 +30,7 @@
 		<jacoco.version>0.8.5</jacoco.version>
 		<spring-format.version>0.0.19</spring-format.version>
 		<selenium.version>3.141.59</selenium.version>
-		<cucumber.version>5.5.0</cucumber.version>
+		<cucumber.version>5.5.0</cucumber.version>		
 	</properties>
 
 	<dependencies>
@@ -113,13 +113,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
+			<scope>test</scope>			
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -129,7 +123,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-		</dependency>
+		</dependency>		 
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-console</artifactId>
@@ -317,53 +311,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<!--Work around. Surefire does not use JUnits Test Engine discovery functionality -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>CLI-test</id>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<target>
-								<echo message="Running JUnit Platform CLI" />
-								<java
-									classname="org.junit.platform.console.ConsoleLauncher"
-									fork="true" failonerror="false" newenvironment="true"
-									maxmemory="512m" classpathref="maven.test.classpath">
-									<arg value="--include-engine" />
-									<arg value="cucumber" />
-									<arg value="--scan-classpath" />
-									<arg value="${project.build.testOutputDirectory}" />
-								</java>
-							</target>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin> <!-- -->
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.2.6.RELEASE</version>
-				<executions>
-					<execution>
-						<id>pre-integration-test</id>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>post-integration-test</id>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
@@ -377,7 +324,7 @@
 						<configuration>
 							<projectName>${name}</projectName>
 							<outputDirectory>target</outputDirectory>
-							<cucumberOutput>target/cucumber-report.json</cucumberOutput>
+							<cucumberOutput>target/cucumber-reports/cucumber-report.json</cucumberOutput>
 							<buildNumber>1</buildNumber>
 							<parallelTesting>false</parallelTesting>
 						</configuration>

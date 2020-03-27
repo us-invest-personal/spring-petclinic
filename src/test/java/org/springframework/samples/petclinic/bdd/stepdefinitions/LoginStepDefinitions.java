@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,11 +15,14 @@ import io.cucumber.java.en.When;
 import lombok.extern.java.Log;
 
 @Log
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LoginStepDefinitions extends AbstractStep {
 
+	@LocalServerPort
+	private int port;
+	
 	@Given("I am not logged in the system")
-	public void IamNotLogged() throws Exception{
-		int port=8080;
+	public void IamNotLogged() throws Exception{		
 		getDriver().get("http://localhost:"+port);
 		WebElement element=getDriver().findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a"));
 		if(element==null || !element.getText().equalsIgnoreCase("login")) {
@@ -60,7 +65,7 @@ public class LoginStepDefinitions extends AbstractStep {
 	
 	@Then("the login form is shown again")
 	public void theLoginFormIsShownAgain() throws Exception {
-		assertEquals(getDriver().getCurrentUrl(),"http://localhost:8080/login-error");
+		assertEquals(getDriver().getCurrentUrl(),"http://localhost:"+port+"/login-error");
 		stopDriver();
 	}
 	

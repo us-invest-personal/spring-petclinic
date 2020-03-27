@@ -12,13 +12,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features",
-        glue = {"stepdefs"},
-        tags = {"~@Ignore"},
+        features= {"src/test/java/"},		        
         plugin = {
                 "pretty",                                
-                "json",                
-                "html:target/cucumber-reports"
-        }, monochrome=true)
+                "json:target/cucumber-reports/cucumber-report.json"}, 
+        monochrome=true)
 public class CucumberTest {
 }
