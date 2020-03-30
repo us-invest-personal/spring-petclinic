@@ -17,5 +17,5 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
                 "pretty",                                
                 "json:target/cucumber-reports/cucumber-report.json"}, 
         monochrome=true)
-public class CucumberTest {
+public class CucumberUITest {
 }
