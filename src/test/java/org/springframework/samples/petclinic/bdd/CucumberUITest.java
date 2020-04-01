@@ -13,8 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features= {"src/test/java/"},		        
-        plugin = {
-                "pretty",                                
+        plugin = {"pretty",                                
                 "json:target/cucumber-reports/cucumber-report.json"}, 
         monochrome=true)
 public class CucumberUITest {

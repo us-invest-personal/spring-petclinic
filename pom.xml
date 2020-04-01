@@ -332,9 +332,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<excludes>
-								<exclude>**/*Test.java</exclude>								
-							</excludes>
+							<skipTests>true</skipTests>
 						</configuration>
 					</plugin>
 					<plugin>

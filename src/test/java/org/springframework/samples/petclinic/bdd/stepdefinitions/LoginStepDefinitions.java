@@ -32,9 +32,8 @@ public class LoginStepDefinitions extends AbstractStep {
 		}
 	}
 	
-	@When("I do login as admin1")
-	public void IdoLoginAs() throws Exception {
-		String username="admin1";
+	@When("I do login as user {string}")
+	public void IdoLoginAs(String username) throws Exception {		
 		loginAs(username,passwordOf(username));		
 	}
 	
@@ -50,17 +49,16 @@ public class LoginStepDefinitions extends AbstractStep {
 		return "4dm1n";
 	}
 
-	@Then("admin1 appears as the current user")
-	public void asCurretUserAppears() throws Exception {
-		String username="admin1";
+	@Then("{string} appears as the current user")
+	public void asCurretUserAppears(String username) throws Exception {		
 		assertEquals(username.toUpperCase(),
 				getDriver().findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a/strong")).getText());
 		stopDriver();
 	}
 	
-	@When("I try to do login as admin1 with an invalid password")
-	public void ItryToDoLoginWithAnInvalidPasswordAs() throws Exception {
-		loginAs("admin1",UUID.randomUUID().toString());
+	@When("I try to do login as user {string} with an invalid password")
+	public void ItryToDoLoginWithAnInvalidPasswordAs(String username) throws Exception {
+		loginAs(username,UUID.randomUUID().toString());
 	}
 	
 	@Then("the login form is shown again")
