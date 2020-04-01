@@ -12,7 +12,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features= {"src/test/java/"},		        
+        features= {"src/test/java/"},	
+        tags = {"not @ignore"},
         plugin = {"pretty",                                
                 "json:target/cucumber-reports/cucumber-report.json"}, 
         monochrome=true)

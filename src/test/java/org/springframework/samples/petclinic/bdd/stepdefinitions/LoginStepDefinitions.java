@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.UUID;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -34,19 +35,27 @@ public class LoginStepDefinitions extends AbstractStep {
 	
 	@When("I do login as user {string}")
 	public void IdoLoginAs(String username) throws Exception {		
-		loginAs(username,passwordOf(username));		
+		loginAs(username,passwordOf(username),port, getDriver());		
 	}
 	
-	private void loginAs(String username,String password) {				
-		getDriver().findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a")).click();
-		getDriver().findElement(By.id("password")).clear();
-		getDriver().findElement(By.id("password")).sendKeys(password);
-		getDriver().findElement(By.id("username")).clear();
-		getDriver().findElement(By.id("username")).sendKeys(username);
-		getDriver().findElement(By.xpath("//button[@type='submit']")).click();
+	public static void loginAs(String username,int port,WebDriver driver) {
+		loginAs(username,passwordOf(username),port, driver);
 	}
-	private String passwordOf(String username) {
-		return "4dm1n";
+	
+	public static void loginAs(String username,String password,int port,WebDriver driver) {				
+		driver.get("http://localhost:"+port);
+		driver.findElement(By.xpath("//div[@id='main-navbar']/ul[2]/li/a")).click();
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys(password);
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys(username);
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+	}
+	private static String passwordOf(String username) {
+		String result="4dm1n";
+		if("owner1".equals(username))
+			result="0wn3r";
+		return result;
 	}
 
 	@Then("{string} appears as the current user")
@@ -58,7 +67,7 @@ public class LoginStepDefinitions extends AbstractStep {
 	
 	@When("I try to do login as user {string} with an invalid password")
 	public void ItryToDoLoginWithAnInvalidPasswordAs(String username) throws Exception {
-		loginAs(username,UUID.randomUUID().toString());
+		loginAs(username,UUID.randomUUID().toString(),port,getDriver());
 	}
 	
 	@Then("the login form is shown again")
