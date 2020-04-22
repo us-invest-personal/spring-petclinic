@@ -21,7 +21,7 @@ public class SportsEventsController {
 	@Autowired
 	SportEventService eventService;
 	
-	@GetMapping(path="/sportEvents/{id}")
+	@GetMapping(path="/api/sportEvents/{id}")
 	public SportEvent getEventById(@PathVariable("id") Integer id) {		
 		SportEvent event=eventService.getEventById(id);
 		if(event==null)
@@ -30,7 +30,7 @@ public class SportsEventsController {
 		return event; 
 	}
 	
-	@PostMapping(path="/sportSevents/{id}/odds")
+	@PostMapping(path="/api/sportEvents/{id}/odds")
 	public ResponseEntity<Odd> addOddToEvent(@PathVariable("id") Integer id, @RequestBody Odd  odd) {
 		eventService.addOddToEvent(id, odd);
 		return new ResponseEntity<>(odd,HttpStatus.CREATED);

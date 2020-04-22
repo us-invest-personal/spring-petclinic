@@ -126,6 +126,7 @@ class PetControllerTests {
 	void testProcessUpdateFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/{ownerId}/pets/{petId}/edit", TEST_OWNER_ID, TEST_PET_ID)
 							.with(csrf())
+							.param("id",String.valueOf(TEST_PET_ID))
 							.param("name", "Betty")
 							.param("type", "hamster")
 							.param("birthDate", "2015/02/12"))
