@@ -27,7 +27,7 @@ public class StarwarsAPITest {
 				.body("gender",equalTo("male"))
 				.body("films",hasSize(equalTo(4))) //Let´s forget episode 8...
 			.and()
-				.time(lessThan(5L), TimeUnit.SECONDS); 
+				.time(lessThan(20L), TimeUnit.SECONDS); 
 
 	}
 }
