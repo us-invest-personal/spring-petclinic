@@ -20,6 +20,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
@@ -123,8 +124,9 @@ public class OwnerController {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-			owner.setId(ownerId);
-			this.ownerService.saveOwner(owner);
+			Owner ownerToBeUpdated=ownerService.findOwnerById(ownerId);
+			BeanUtils.copyProperties(owner,ownerToBeUpdated,"id","pets","user");
+			this.ownerService.saveOwner(ownerToBeUpdated);
 			return "redirect:/owners/{ownerId}";
 		}
 	}

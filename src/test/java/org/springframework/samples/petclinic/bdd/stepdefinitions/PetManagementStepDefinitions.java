@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.annotation.DirtiesContext;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,6 +17,7 @@ import io.cucumber.java.en.When;
 import lombok.extern.java.Log;
 
 @Log
+@DirtiesContext
 public class PetManagementStepDefinitions extends AbstractStep {
 	
 	@LocalServerPort
