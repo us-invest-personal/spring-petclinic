@@ -39,4 +39,6 @@ public interface VetRepository {
 	 */
 	Collection<Vet> findAll() throws DataAccessException;
 
+	Collection<Vet> findAllWithSpecialties();
+
 }
