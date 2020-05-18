@@ -15,8 +15,13 @@
  */
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.projections.PetVisit;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 
 /**
@@ -27,4 +32,8 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
  */
 public interface SpringDataVisitRepository extends VisitRepository, Repository<Visit, Integer> {
 
+	@Override
+	@Query("SELECT p.name AS name, t.name AS typeName, v.date AS date, v.description AS description "
+			+ "FROM Pet p INNER JOIN p.type t INNER JOIN p.visits v")
+	List<PetVisit> findAllPetVisits() throws DataAccessException;
 }

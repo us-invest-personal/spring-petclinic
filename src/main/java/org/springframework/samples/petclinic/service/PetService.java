@@ -16,12 +16,14 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.projections.PetVisit;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
@@ -63,6 +65,11 @@ public class PetService {
 	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
 		return petRepository.findById(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<PetVisit> findAllPetVisits() throws DataAccessException {
+		return visitRepository.findAllPetVisits();
 	}
 
 	@Transactional(rollbackFor = DuplicatedPetNameException.class)
