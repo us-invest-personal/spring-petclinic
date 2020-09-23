@@ -30,12 +30,12 @@
     <coordinates>
       <x>750</x>
       <y>370</y>
-      <w>280</w>
+      <w>210</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>Pet
 --
-birthDate: LocalDate {Date}
+birthDate: Date {Past}
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -81,12 +81,12 @@ id: int
     <coordinates>
       <x>780</x>
       <y>280</y>
-      <w>130</w>
+      <w>230</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>NamedEntity
 --
-name: String
+name: String {NotBlank}
 
 </panel_attributes>
     <additional_attributes/>
@@ -112,8 +112,8 @@ name: String
     </coordinates>
     <panel_attributes>Visit
 --
-date: LocalDate {Date}
-description: String</panel_attributes>
+date: Date 
+description: String {NotBlank}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -121,28 +121,28 @@ description: String</panel_attributes>
     <coordinates>
       <x>170</x>
       <y>480</y>
-      <w>150</w>
+      <w>250</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>Owner
 --
-address: String
-city: String</panel_attributes>
+address: String {NotBlank}
+city: String {NotBlank}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>410</x>
       <y>430</y>
-      <w>520</w>
+      <w>420</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=0..n
 owns &gt;</panel_attributes>
-    <additional_attributes>10.0;100.0;470.0;100.0;470.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;370.0;100.0;370.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -159,15 +159,15 @@ owns &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>180</x>
+      <x>90</x>
       <y>280</y>
-      <w>170</w>
+      <w>260</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>Person
 --
-firstName: String
-lastName: String</panel_attributes>
+firstName: String {NotBlank}
+lastName: String {NotBlank}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -268,54 +268,54 @@ m2=0..n
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
+      <x>680</x>
       <y>170</y>
-      <w>160</w>
+      <w>250</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>Authorities
 --
-authority: String</panel_attributes>
+authority: String {NotBlank}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1010</x>
+      <x>1030</x>
       <y>140</y>
-      <w>170</w>
+      <w>310</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>User
 --
-username: String
-password: String</panel_attributes>
+username: String {Length(4,50)}
+password: String {Length(8,50)}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
+      <x>920</x>
       <y>160</y>
-      <w>160</w>
+      <w>130</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
 
 </panel_attributes>
-    <additional_attributes>10.0;30.0;140.0;30.0</additional_attributes>
+    <additional_attributes>10.0;30.0;110.0;30.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>630</x>
       <y>180</y>
-      <w>110</w>
+      <w>70</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
