@@ -63,9 +63,11 @@ public class DiseaseController {
 		Optional<Disease> disease=diseasesService.findById(id);
 		if(disease.isPresent()) {
 			diseasesService.delete(disease.get());
+			model.addAttribute("messageType","danger");
 			model.addAttribute("message","The disease was deleted successfully!");
 			return listDiseases(model);
 		}else {
+			model.addAttribute("messageType","danger");
 			model.addAttribute("message","We cannot find the disease you tried to delete!");
 			return listDiseases(model);
 		}
