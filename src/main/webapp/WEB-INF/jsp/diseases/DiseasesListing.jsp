@@ -39,5 +39,8 @@
         </c:forEach>
         </tbody>
     </table>
+    <p>
+    	<a href="/diseases/new" class="btn  btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add disease</a>
+    </p>
 	
 </petclinic:layout>

@@ -72,4 +72,21 @@ public class DiseaseController {
 			return listDiseases(model);
 		}
 	}
+	
+	@GetMapping("/new")
+	public String editNewDisease(ModelMap model) {
+		model.addAttribute("disease",new Disease());
+		return DISEASES_FORM;
+	}
+	
+	@PostMapping("/new")
+	public String saveNewDisease(@Valid Disease disease, BindingResult binding,ModelMap model) {
+		if(binding.hasErrors()) {			
+			return DISEASES_FORM;
+		}else {
+			diseasesService.save(disease);
+			model.addAttribute("message", "The disease was created successfully!");			
+			return listDiseases(model);
+		}
+	}
 }
