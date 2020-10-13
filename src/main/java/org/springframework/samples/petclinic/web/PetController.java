@@ -35,6 +35,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.service.DiagnoseService;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
@@ -51,12 +52,14 @@ public class PetController {
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
 	private final PetService petService;
-        private final OwnerService ownerService;
+	private final OwnerService ownerService;
+	private final DiagnoseService diagnoseService;
 
 	@Autowired
-	public PetController(PetService petService, OwnerService ownerService) {
+	public PetController(PetService petService, OwnerService ownerService,DiagnoseService diagnoseService) {
 		this.petService = petService;
-                this.ownerService = ownerService;
+        this.ownerService = ownerService;
+        this.diagnoseService=diagnoseService;
 	}
 
 	@ModelAttribute("types")
@@ -150,5 +153,11 @@ public class PetController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
-
+        
+    @GetMapping(value="/pets/{petId}/history")
+    public String getPetClinicHistory(@PathVariable("petId") int petId, ModelMap model) {
+    	model.addAttribute("diagnoses",diagnoseService.findByPetIde(petId));
+    	model.addAttribute("pet",petService.findPetById(petId));
+    	return "pets/History";
+    }
 }
