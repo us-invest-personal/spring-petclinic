@@ -52,14 +52,12 @@ public class PetController {
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
 	private final PetService petService;
-	private final OwnerService ownerService;
-	private final DiagnoseService diagnoseService;
+	private final OwnerService ownerService;	
 
 	@Autowired
-	public PetController(PetService petService, OwnerService ownerService,DiagnoseService diagnoseService) {
+	public PetController(PetService petService, OwnerService ownerService) {
 		this.petService = petService;
-        this.ownerService = ownerService;
-        this.diagnoseService=diagnoseService;
+        this.ownerService = ownerService;        
 	}
 
 	@ModelAttribute("types")
@@ -153,11 +151,5 @@ public class PetController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
-        
-    @GetMapping(value="/pets/{petId}/history")
-    public String getPetClinicHistory(@PathVariable("petId") int petId, ModelMap model) {
-    	model.addAttribute("diagnoses",diagnoseService.findByPetIde(petId));
-    	model.addAttribute("pet",petService.findPetById(petId));
-    	return "pets/History";
-    }
+            
 }

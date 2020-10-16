@@ -63,12 +63,26 @@
                         <tr>
                             <th>Visit Date</th>
                             <th>Description</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <c:forEach var="visit" items="${pet.visits}">
                             <tr>
                                 <td><petclinic:localDate date="${visit.date}" pattern="yyyy-MM-dd"/></td>
-                                <td><c:out value="${visit.description}"/></td>
+                                <td><c:out value="${visit.description}"/></td>                               
+                                <td>
+                                	<c:choose>
+    									<c:when test="${diagnoses[visit]==null}">
+			                            	<spring:url value="/visits/{visitId}/diagnoses/new" var="newDiagnoseUrl">
+            	        	                	<spring:param name="visitId" value="${visit.id}"/>                                    
+                		                	</spring:url>
+                            		    	<a href="${fn:escapeXml(newDiagnoseUrl)}">Create Diagnose</a>											        
+    									</c:when>    
+    									<c:otherwise>
+        									Diagnose: <c:out value="${diagnoses[visit].disease.name}"/> 
+    									</c:otherwise>
+									</c:choose>
+                                </td>
                             </tr>
                         </c:forEach>
                         <tr>
