@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping()
@@ -62,16 +61,11 @@ public class DiagnoseController {
 	}
 	
 	@PostMapping(path = "/visits/{visitId}/diagnoses/new")
-	public String createDiagnose(@PathVariable("visitId")int visitId, @RequestParam("vet") int vetId,@RequestParam("disease") int diseaseId, @RequestParam("description") String description, ModelMap model) {
-		Optional<Visit> visit=visitService.findById(visitId);
-		if(visit.isPresent()) {
-			Diagnose diagnose=new Diagnose();
-			diagnose.setDescription(description);
-			diagnose.setDisease(diseaseService.findById(diseaseId).get());
-			diagnose.setVet(vetService.findById(vetId).get());
-			diagnose.setVisit(visit.get());
+	public String createDiagnose(@PathVariable("visitId") Visit visit, @Valid Diagnose diagnose, BindingResult result, ModelMap model) {		
+		if(visit!=null) {			
+			diagnose.setVisit(visit);
 			diagnoseService.save(diagnose);
-			Pet pet=visit.get().getPet();
+			Pet pet=visit.getPet();
 			Owner owner=pet.getOwner();			
 			return "redirect:/owners/"+owner.getId()+"/pets/"+pet.getId()+"/history";
 		}else {
