@@ -10,8 +10,9 @@
 	    <table id="diseasesTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 20%;">Name</th>
-            <th style="width: 80%;">Description</th>
+            <th style="width: 15%;">Name</th>
+            <th style="width: 70%'%;">Description</th>
+            <th style="width: 15%;">Pet Types</th>
             <th></th>
             <th></th>            
         </tr>
@@ -23,8 +24,15 @@
                     <c:out value="${disease.name}"/>
                 </td>
                 <td>
-                    <c:out value="${disease.description}"/>
+                    ${disease.description}"
                 </td>                
+                <td>
+                	<ul>
+                	 <c:forEach items="${disease.petTypeswithPrevalence}" var="petType">
+                	 	<li>${petType}</li>
+                	 </c:forEach>
+                	</ul>
+                </td>
                 <td>
                 	<a href="/diseases/${disease.id}/edit">
                 	<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

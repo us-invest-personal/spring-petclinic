@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Disease;
 import org.springframework.samples.petclinic.service.DiseaseService;
+import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,9 @@ public class DiseaseController {
 	@Autowired
 	DiseaseService diseasesService;
 	
+	@Autowired
+	PetService petService;
+	
 	@GetMapping
 	public String listDiseases(ModelMap model)
 	{
@@ -38,6 +42,7 @@ public class DiseaseController {
 		Optional<Disease> disease=diseasesService.findById(id);
 		if(disease.isPresent()) {
 			model.addAttribute("disease",disease.get());
+			model.addAttribute("petTypes",petService.findPetTypes());
 			return DISEASES_FORM;
 		}else {
 			model.addAttribute("message","We cannot find the disease you tried to edit!");
@@ -76,6 +81,7 @@ public class DiseaseController {
 	@GetMapping("/new")
 	public String editNewDisease(ModelMap model) {
 		model.addAttribute("disease",new Disease());
+		model.addAttribute("petTypes",petService.findPetTypes());
 		return DISEASES_FORM;
 	}
 	

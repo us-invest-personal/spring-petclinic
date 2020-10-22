@@ -13,7 +13,13 @@
     <form:form modelAttribute="disease" class="form-horizontal" id="add-owner-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="Name" name="name"/>
-            <petclinic:richTextArea id="description" label="Description" name="description"/>            
+            <petclinic:richTextArea id="description" label="Description" name="description"/>
+            <div class="formGroup">            
+            	<div class="col-sm-10">
+            	<label>Pet types with known prevalence:</label>
+            		<form:checkboxes items="${petTypes}" path="petTypeswithPrevalence" delimiter="&nbsp;&nbsp;&nbsp;"/>
+            	</div>
+            </div>         
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
