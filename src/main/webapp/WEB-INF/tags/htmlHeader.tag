@@ -32,4 +32,7 @@ PetClinic :: a Spring Framework demonstration
     <link href="${jQueryUiCss}" rel="stylesheet"/>
     <spring:url value="/webjars/jquery-ui/1.11.4/jquery-ui.theme.min.css" var="jQueryUiThemeCss"/>
     <link href="${jQueryUiThemeCss}" rel="stylesheet"/>
+    
+    <spring:url value="/webjars/ckeditor/4.14.0/standard/ckeditor.js" var="ckeditorJs"/>
+	<script src="${ckeditorJs}"></script>
 </head>

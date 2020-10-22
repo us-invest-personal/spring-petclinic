@@ -15,7 +15,7 @@
     
     <form:form modelAttribute="diagnose" class="form-horizontal" id="add-owner-form">
         <div class="form-group has-feedback">            
-            <petclinic:inputField label="Description" name="description"/>            
+            <petclinic:richTextArea id="description" label="Description" name="description"/>            
             <div class="form-group">
             	<label class="col-sm-2 control-label">Vet:</label>
             	<div class="col-sm-10">
