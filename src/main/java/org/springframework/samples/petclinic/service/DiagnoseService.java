@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Diagnose;
 import org.springframework.samples.petclinic.model.Pet;
@@ -34,7 +36,7 @@ public class DiagnoseService {
 		return diagnoses;
 	}
 	
-	public void save(Diagnose diagnose) {
+	public void save(@Valid Diagnose diagnose) {
 		repo.save(diagnose);
 	}
 

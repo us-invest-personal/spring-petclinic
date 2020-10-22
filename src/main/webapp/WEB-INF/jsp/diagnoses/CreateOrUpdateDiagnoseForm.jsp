@@ -14,7 +14,8 @@
     	Diagnose for visit on <petclinic:localDate date="${visit.date}" pattern="yyyy-MM-dd"/> for <c:out value="${visit.pet.name}"/>, a ${visit.pet.type} born in <petclinic:localDate date="${visit.pet.birthDate}" pattern="yyyy-MM-dd"/>    </p>
     
     <form:form modelAttribute="diagnose" class="form-horizontal" id="add-owner-form">
-        <div class="form-group has-feedback">            
+        <div class="form-group has-feedback">      
+        	<input type="hidden" name="visit" value="${visit.id}" />      
             <petclinic:richTextArea id="description" label="Description" name="description"/>            
             <div class="form-group">
             	<label class="col-sm-2 control-label">Vet:</label>
@@ -30,6 +31,8 @@
 				<form:select path="disease">
             		<form:options itemValue="id" itemLabel="name" items="${diseases}" />
             	</form:select>
+            	<div class="has-error ">
+            		<form:errors path="disease" class="help-block"/>            	
             	</div>                        
             </div>
         </div>
