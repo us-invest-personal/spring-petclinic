@@ -32,7 +32,7 @@ public class DiseaseService {
 	}
 
 
-	public void save(@Valid Disease disease) {
+	public void save(@Valid Disease disease) {		
 		diseaseRepo.save(disease);
 		
 	}

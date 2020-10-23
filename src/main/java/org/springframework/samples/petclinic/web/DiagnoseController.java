@@ -9,6 +9,7 @@ import org.springframework.samples.petclinic.model.Diagnose;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.model.businessrulesexceptions.ImpossibleDiseaseException;
 import org.springframework.samples.petclinic.service.DiagnoseService;
 import org.springframework.samples.petclinic.service.DiseaseService;
 import org.springframework.samples.petclinic.service.PetService;
@@ -43,10 +44,10 @@ public class DiagnoseController {
 	@Autowired
 	PetService petService;
 	
-	@InitBinder("diagnose")
+	/*@InitBinder("diagnose")
 	public void initPetBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new DiagnoseValidator());
-	}
+	}*/
 	
 	@GetMapping(path = "/visits/{visitId}/diagnoses/new")
 	public String createDiagnose(@PathVariable("visitId")int visitId,ModelMap model)
@@ -72,10 +73,19 @@ public class DiagnoseController {
 		if(visit!=null) {
 			if(!result.hasErrors()) {					
 				diagnose.setVisit(visit);
-				diagnoseService.save(diagnose);
-				Pet pet=visit.getPet();
-				Owner owner=pet.getOwner();			
-				return "redirect:/owners/"+owner.getId()+"/pets/"+pet.getId()+"/history";
+				try { 
+					diagnoseService.save(diagnose);
+					Pet pet=visit.getPet();
+					Owner owner=pet.getOwner();			
+					return "redirect:/owners/"+owner.getId()+"/pets/"+pet.getId()+"/history";
+				}catch(ImpossibleDiseaseException ex) {
+					model.addAttribute("diagnose", diagnose);
+					model.addAttribute("visit",visit);
+					model.addAttribute("diseases",diseaseService.findAll());
+					model.addAttribute("vets",vetService.findVets());
+					result.rejectValue("disease",ex.getLocalizedMessage(),ex.getMessage());
+					return "diagnoses/CreateOrUpdateDiagnoseForm";
+				}
 			}else {
 				model.addAttribute("diagnose", diagnose);
 				model.addAttribute("visit",visit);

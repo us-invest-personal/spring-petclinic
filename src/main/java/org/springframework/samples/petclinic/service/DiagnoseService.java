@@ -8,8 +8,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Diagnose;
+import org.springframework.samples.petclinic.model.Disease;
 import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.model.businessrulesexceptions.ImpossibleDiseaseException;
 import org.springframework.samples.petclinic.repository.DiagnoseRepository;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +39,16 @@ public class DiagnoseService {
 		return diagnoses;
 	}
 	
-	public void save(@Valid Diagnose diagnose) {
+	public void save(@Valid Diagnose diagnose) throws ImpossibleDiseaseException {
+		validateDiseaseIsPossible(diagnose);
 		repo.save(diagnose);
+	}
+
+	private void validateDiseaseIsPossible(@Valid Diagnose diagnose) throws ImpossibleDiseaseException {
+		Disease disease=diagnose.getDisease();
+		PetType petType=diagnose.getVisit().getPet().getType();
+		if(!disease.getPetTypeswithPrevalence().contains(petType))
+			throw new ImpossibleDiseaseException(disease.getName(),petType.getName());
 	}
 
 }
