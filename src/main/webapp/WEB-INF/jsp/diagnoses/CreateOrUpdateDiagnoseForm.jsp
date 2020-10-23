@@ -37,6 +37,11 @@
             </div>
         </div>
         <div class="form-group">
+        	<div class="has-error ">
+            		<form:errors class="help-block"/>            	
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${diagnose['new']}">

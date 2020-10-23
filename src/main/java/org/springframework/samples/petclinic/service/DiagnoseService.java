@@ -40,7 +40,7 @@ public class DiagnoseService {
 	}
 	
 	public void save(@Valid Diagnose diagnose) throws ImpossibleDiseaseException {
-		validateDiseaseIsPossible(diagnose);
+		//validateDiseaseIsPossible(diagnose);
 		repo.save(diagnose);
 	}
 

@@ -8,11 +8,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.springframework.samples.petclinic.service.businessrules.ValidatePossibleDisease;
+
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name="diagnoses")
+@ValidatePossibleDisease
 public class Diagnose extends BaseEntity{
 	@Size(min = 10, max = 1024)
 	@Column(length=1024)     // Needed in some environments for strings longer than 255 characters
