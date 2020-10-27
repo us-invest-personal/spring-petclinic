@@ -329,14 +329,14 @@ prescribes &gt;
     <coordinates>
       <x>0</x>
       <y>1260</y>
-      <w>315</w>
+      <w>195</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>Prevalence
 --
 fg=red
-percentage: int {Min(0),Max(100)}
-usualSeverity: String {NotEmpty}</panel_attributes>
+percentage
+usualSeverity</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
