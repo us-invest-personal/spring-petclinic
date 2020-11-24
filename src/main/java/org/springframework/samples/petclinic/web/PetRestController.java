@@ -9,6 +9,7 @@ import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.exceptions.BadRequestException;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
+import org.springframework.samples.petclinic.service.exceptions.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,8 +56,10 @@ public class PetRestController {
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void update(@RequestBody Pet resource, @PathVariable("id") int id) {
-		if(resource == null || petService.findPetById(id) == null) {
+		if(resource == null) {
 			throw new BadRequestException();
+		} else if(petService.findPetById(id) == null) {
+			throw new ResourceNotFoundException();
 		} else {
 			try {
 				petService.savePet(resource);
