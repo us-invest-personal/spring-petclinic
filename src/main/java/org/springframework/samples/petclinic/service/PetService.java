@@ -73,6 +73,16 @@ public class PetService {
             }else
                 petRepository.save(pet);                
 	}
+	
+	@Transactional(readOnly = true)
+	public Collection<Pet> findAllPets() {
+		return petRepository.findAll();
+	}
+	
+	@Transactional
+	public void deletePet(int petId) {
+		petRepository.deleteById(petId);
+	}
 
 
 	public Collection<Visit> findVisitsByPetId(int petId) {
