@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.web.api;
 
 import java.util.Collection;
 import java.util.List;
@@ -39,7 +39,7 @@ public class PetRestController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Integer create(@RequestBody Pet resource) {
+	public Pet create(@RequestBody Pet resource) {
 		if(resource == null) {
 			throw new BadRequestException();
 		} else {
@@ -50,7 +50,7 @@ public class PetRestController {
 			}
 		}
 		
-		return resource.getId();
+		return resource;
 	}
 	
 	@PutMapping("/{id}")
