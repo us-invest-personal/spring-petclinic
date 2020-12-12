@@ -63,6 +63,7 @@ class OwnerControllerTests {
 
 		george = new Owner();
 		george.setId(TEST_OWNER_ID);
+		george.setVersion(1);
 		george.setFirstName("George");
 		george.setLastName("Franklin");
 		george.setAddress("110 W. Liberty St.");
@@ -84,6 +85,7 @@ class OwnerControllerTests {
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/new").param("firstName", "Joe").param("lastName", "Bloggs")
 							.with(csrf())
+							.param("version","1")
 							.param("address", "123 Caramel Street")
 							.param("city", "London")
 							.param("telephone", "01316761638"))
@@ -96,6 +98,7 @@ class OwnerControllerTests {
 		mockMvc.perform(post("/owners/new")
 							.with(csrf())
 							.param("firstName", "Joe")
+							.param("version","1")
 							.param("lastName", "Bloggs")
 							.param("city", "London"))
 				.andExpect(status().isOk())
@@ -160,6 +163,7 @@ class OwnerControllerTests {
 							.param("lastName", "Bloggs")
 							.param("address", "123 Caramel Street")
 							.param("city", "London")
+							.param("version","1")
 							.param("telephone", "01616291589"))
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/owners/{ownerId}"));
@@ -172,6 +176,7 @@ class OwnerControllerTests {
 							.with(csrf())
 							.param("firstName", "Joe")
 							.param("lastName", "Bloggs")
+							.param("version","1")
 							.param("city", "London"))
 				.andExpect(status().isOk())
 				.andExpect(model().attributeHasErrors("owner"))
