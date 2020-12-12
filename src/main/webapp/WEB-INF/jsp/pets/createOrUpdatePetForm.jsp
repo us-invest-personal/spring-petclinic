@@ -18,7 +18,9 @@
         </h2>
         <form:form modelAttribute="pet"
                    class="form-horizontal">
+             <form:errors/>
             <input type="hidden" name="id" value="${pet.id}"/>
+            <input type="hidden" name="version" value="${pet.version}"/>
             <div class="form-group has-feedback">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Owner</label>
