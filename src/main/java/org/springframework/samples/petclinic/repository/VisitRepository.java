@@ -47,4 +47,5 @@ public interface VisitRepository extends Repository<Visit, Integer> {
 	
 	Optional<Visit> findById(Integer id);
 
+	List<Visit> findAll();
 }

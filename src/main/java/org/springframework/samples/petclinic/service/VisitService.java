@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,9 @@ public class VisitService {
 	
 	public Optional<Visit> findById(int visitId){
 		return visitRepository.findById(visitId);
+	}
+	
+	public List<Visit> findAll(){
+		return visitRepository.findAll();
 	}
 }
