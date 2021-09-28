@@ -32,6 +32,23 @@
 
     </properties>
 
+	<developers>
+		<developer>
+			<id>us-invest-personal</id>
+			<name>Us Invest Personal</name>
+			<email>us.invest.personal.2020@gmail.com</email>
+			<url>https://personal.us.es/iestrada/</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+					https://personal.us.es/iestrada/images/pic00.png
+				</picUrl>
+			</properties>
+		</developer>
+	</developers>
+	
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
