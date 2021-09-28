@@ -34,6 +34,20 @@
 
 	<developers>
 		<developer>
+			<id>us-invest-personal</id>
+			<name>Us Invest Personal</name>
+			<email>us.invest.personal.2020@gmail.com</email>
+			<url>https://personal.us.es/iestrada/</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+					https://personal.us.es/iestrada/images/pic00.png
+        </picUrl>
+			</properties>
+		</developer>
+		<developer>
 			<id>Adartse</id>
 			<name>Adartse Estrada</name>
 			<email>adartse@algo.com</email>
