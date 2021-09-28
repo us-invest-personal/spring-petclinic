@@ -32,6 +32,23 @@
 
     </properties>
 
+	<developers>
+		<developer>
+			<id>Adartse</id>
+			<name>Adartse Estrada</name>
+			<email>adartse@algo.com</email>
+			<url>https://sites.google.com/view/bediliaestradatorres</url>
+			<roles>
+				<role>tech master</role>
+			</roles>
+			<properties>
+				<picUrl>
+					https://lh5.googleusercontent.com/-uN5UUV7ja7MPFuEg4SsHU23kZrvdemaW92ql1fZgYdfLMrgLAt_UIaNvckqiloJAV2fhAtjNEpfw0VTeBprmWCcBGz--UTZJmbYMAzAbWF2W_qT=w1280
+				</picUrl>
+			</properties>
+		</developer>
+	</developers>
+	
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
@@ -254,7 +271,5 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
-
-
 
 </project>
