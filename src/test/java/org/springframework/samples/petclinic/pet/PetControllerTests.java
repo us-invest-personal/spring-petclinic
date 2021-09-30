@@ -35,12 +35,6 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.OwnerService;
-import org.springframework.samples.petclinic.pet.Pet;
-import org.springframework.samples.petclinic.pet.PetController;
-import org.springframework.samples.petclinic.pet.PetService;
-import org.springframework.samples.petclinic.pet.PetType;
-import org.springframework.samples.petclinic.pet.PetTypeFormatter;
-import org.springframework.samples.petclinic.vet.VetService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -59,9 +53,6 @@ class PetControllerTests {
 	private static final int TEST_OWNER_ID = 1;
 
 	private static final int TEST_PET_ID = 1;
-
-	@Autowired
-	private PetController petController;
 
 
 	@MockBean

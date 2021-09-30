@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.samples.petclinic.model.BaseEntity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

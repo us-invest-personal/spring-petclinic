@@ -21,7 +21,6 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
-import org.springframework.samples.petclinic.vet.VetService;
 import org.springframework.stereotype.Component;
 
 /**
